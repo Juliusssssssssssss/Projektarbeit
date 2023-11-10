@@ -1,0 +1,897 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="bszetdd it-systems">
+      
+      
+      
+        <link rel="prev" href="../implementierung/">
+      
+      
+        <link rel="next" href="../test/">
+      
+      
+      <link rel="icon" href="/figures/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>(11 Zusatz) Industry Foundation Classes - Willkommen zum Lernfeld 8 - Daten systemübergreifend bereitstellen (Fachinformatiker/IT-Systemelektroniker)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+  
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a7 7 0 0 1-7-7 7 7 0 0 1 7-7 7 7 0 0 1 7 7 7 7 0 0 1-7 7m0-16a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9m.5 4H11v6l4.75 2.85.75-1.23-4-2.37V8M7.88 3.39 6.6 1.86 2 5.71l1.29 1.53 4.59-3.85M22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72Z"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="light-blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tutorial-zur-verarbeitung-von-gebaudedaten-mit-den-industrial-foundation-classes12" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="Willkommen zum Lernfeld 8 - Daten systemübergreifend bereitstellen (Fachinformatiker/IT-Systemelektroniker)" class="md-header__button md-logo" aria-label="Willkommen zum Lernfeld 8 - Daten systemübergreifend bereitstellen (Fachinformatiker/IT-Systemelektroniker)" data-md-component="logo">
+      
+  <img src="/figures/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Willkommen zum Lernfeld 8 - Daten systemübergreifend bereitstellen (Fachinformatiker/IT-Systemelektroniker)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              (11 Zusatz) Industry Foundation Classes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Willkommen zum Lernfeld 8 - Daten systemübergreifend bereitstellen (Fachinformatiker/IT-Systemelektroniker)" class="md-nav__button md-logo" aria-label="Willkommen zum Lernfeld 8 - Daten systemübergreifend bereitstellen (Fachinformatiker/IT-Systemelektroniker)" data-md-component="logo">
+      
+  <img src="/figures/favicon.png" alt="logo">
+
+    </a>
+    Willkommen zum Lernfeld 8 - Daten systemübergreifend bereitstellen (Fachinformatiker/IT-Systemelektroniker)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kundenauftrag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kundenauftrag
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anwendungsfaelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (1) Anwendungsfälle des Geschäftsprozesses des Kunden
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versionskontrolle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (2) Versionskontrolle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sequenzdiagramm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (3) Zeitliche Analyse des Geschäftsprozesses des Kunden
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projektdokumentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (4) Projektdokumentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datenquellen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (5) Analyse der Datenquellen des Geschäftsprozesses
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nutzer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (6) Verwaltung der Datenquellen durch den Nutzer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sicherheit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (7) Absicherung der Datenquellen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datenmodell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (8) Datenmodell der Datenquellen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datenbank/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (9) Implementierung der Datenquellen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vorgehensmodelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (10) Software-Entwicklung - Vorgehensmodelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implementierung/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (11) Software-Entwicklung - Implementierung
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    (11 Zusatz) Industry Foundation Classes
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (12) Software-Entwicklung - Test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../praesentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (13) Präsentation für potentiellen Kunden
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legal/imprint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Impressum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="tutorial-zur-verarbeitung-von-gebaudedaten-mit-den-industrial-foundation-classes12">Tutorial zur Verarbeitung von Gebäudedaten mit den Industrial Foundation Classes<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></h1>
+<p>Die Industrial Foundation Classes (IFC) sind ein internationaler Standard zur elektronischen Darstellung von Gebäude- bzw. Baudaten (engl. Building Information Modeling (BIM)), der seit ca. 20 Jahren immer weiter entwickelt wird. Die aktuelle Version ist IFC4.3 aus dem Jahr 2021. Kernidee dieses Standards ist die Einteilung von bestimmten Gebäudeteilen in konkrete Funktionsklassen (deshalb auch das Wort <strong>classes</strong>). Diese Gebäudeteile werden auch als Objekte abstrahiert, was die Zuordnung bestimmter klasseneigener Eigenschaften (Elemente) zulässt.</p>
+<p><img align="center" alt="" src="/figures/ug.png" /></p>
+<p>Das Modell des Hauses<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> als Basis für die geplante IT-Installation.</p>
+<div class="admonition note">
+<p class="admonition-title">Beispiel</p>
+<p>Eine Tür ist ein Objekt der Klasse <strong>IfcDoor</strong> und hat bestimmte Eigenschaften wie Abmaße, Dimension und Material. Eine weitere ähnliche Tür kann durch das Erzeugen eines weiteren Objektes <strong>IfcDoor</strong> und das Kopieren der Eigenschaften erzeugt werden.  </p>
+</div>
+<p>Dieser Objektansatz erlaubt das einfache Verschieben, Ändern, Duplizieren von Gebäudeteilen innerhalb des Gesamtmodells. Ebenso können Objekte in Beziehungen stehen. Zur Darstellung der Beziehungen sind Hierarchiediagramme sinnvoll.</p>
+<div class="admonition info inline end">
+<p class="admonition-title">10 min</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe 1 - Eigenschaften eines Baumes</p>
+<p>Lesen Sie das <a href="/pdf/ab_baum.pdf">Arbeitsblatt</a>. Beschreiben Sie folgende Begriffe eines Baums: Knoten, Blatt, Wurzel, Kind, Elternteil, Beziehung zwischen Knoten.
+Definieren Sie den Begriff Baum.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">...</p>
+<dl>
+<dt><code>Knoten</code></dt>
+<dd>Der Knoten ist ein Element eines Baumes. Er kann Wurzel, Kind, Elternteil oder ein Blatt sein.</dd>
+<dt><code>Blatt</code></dt>
+<dd>Ein Blatt ...</dd>
+<dt><code>Wurzel</code></dt>
+<dd>Die Wurzel ...</dd>
+<dt><code>Kind</code></dt>
+<dd>Ein Kind ...</dd>
+<dt><code>Elternteil</code></dt>
+<dd>Ein Elternteil ...</dd>
+<dt><code>Beziehung</code></dt>
+<dd>Beziehungen werden ...</dd>
+<dt><code>Definition Baum</code></dt>
+<dd>Ein Baum ist ...</dd>
+</dl>
+</div>
+<p>Die Daten werden in Form von <strong>Textdateien</strong> gespeichert, die nach einer vorgegebenen Syntax aufgebaut sind.</p>
+<div class="admonition note">
+<p class="admonition-title">Beispiel</p>
+<p>Folgend ist der Startteil einer IFC-Datei dargestellt.
+<div class="highlight"><pre><span></span><code>ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION((&#39;ViewDefinition [CoordinationView_V2.0, QuantityTakeOffAddOnView]&#39;),&#39;2;1&#39;);
+FILE_NAME(&#39;unternehmensgebaeude.ifc&#39;,&#39;2023-05-13T11:52:35+02:00&#39;,(&#39;&#39;),(&#39;&#39;),&#39;IfcOpenShell v0.7.0-476ab506d&#39;,&#39;BlenderBIM 0.0.230506&#39;,&#39;&#39;);
+FILE_SCHEMA((&#39;IFC2X3&#39;));
+ENDSEC;
+DATA;
+#5=IFCAPPLICATION($,&#39;2021&#39;,&#39;Autodesk Revit 2021 (ENU)&#39;,&#39;Revit&#39;);
+#6=IFCCARTESIANPOINT((0.,0.,0.));
+#9=IFCCARTESIANPOINT((0.,0.));
+#11=IFCDIRECTION((1.,0.,0.));
+#13=IFCDIRECTION((-1.,0.,0.));
+#15=IFCDIRECTION((0.,1.,0.));
+#17=IFCDIRECTION((0.,-1.,0.));
+</code></pre></div></p>
+</div>
+<p>Die Zeilen mit <strong>#</strong> beginnend stellen eindeutig nummerierte einzelne Elemente bzw. Objekte dar. Sind mit <strong>#</strong> gekennzeichnete Nummern innerhalb von Klammern stehend, so sind dies Verweise auf andere Elemente dieser Datei. Damit werden Beziehungen zwischen Elementen und Objekten hergestellt. </p>
+<div class="admonition note">
+<p class="admonition-title">Beispiel</p>
+<p>Folgend ist ein Element einer IFC-Datei dargestellt.
+<div class="highlight"><pre><span></span><code>#32=IFCLOCALPLACEMENT(#207,#31);
+</code></pre></div>
+Das heißt, das Element #32 verweist auf das Element #207 und auf das Element #31. Das Element #32 hat somit zu beiden Elementen eine Beziehung.</p>
+</div>
+<div class="admonition info inline end">
+<p class="admonition-title">5 min</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe 2 - Datenstrukturen erkennen</p>
+<p>Für ein Gebäude ist ein vollständiger <a href="/doc/ug.ifc">Datensatz</a> im IFC-Format gegeben. Öffnen Sie diesen mit einem Editor oder einem Browser und analysieren Sie die Beziehungen zwischen den Elementen. Entscheiden Sie, ob es sich bei dem Datensatz um eine Baumstruktur handelt. Gehen Sie bei der Untersuchung vom Element <strong>#41</strong> aus.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">...</p>
+<dl>
+<dt><code>Entscheidung Baum</code></dt>
+<dd>nein</dd>
+<dt><code>Eigenschaften der Struktur</code></dt>
+<dd>Die Strucktur ist kein Baum da der Knoten 41 mehrere Eltern hat.</dd>
+</dl>
+</div>
+<p><img align="center" alt="" src="/figures/baumdiagrammschulgebaede.png" /></p>
+<p>Teilbaum des Schulgebäudes des BSZET.</p>
+<p>Die <a href="/doc/baumdiagrammschulgebaede.odg">projektdatei</a> findet man hier</p>
+<p>Die Beziehungen zwischen den Elementen sind komplex, aber dennoch nicht willkürlich. Durch die Verwendung einer Hierarchie für <strong>bestimmte</strong> Elemente ist für diese Hierarchie die Baumstruktur erkennbar.</p>
+<p><img alt="Hierarchie" src="/figures/ifc_baum.png" /></p>
+<p>Hierarchiebaum in IFC<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup></p>
+<div class="admonition info inline end">
+<p class="admonition-title">15 min</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe 3 - Datenstrukturen erkennen</p>
+<p>Auch im vorliegenden <a href="/doc/ug.ifc">Gebäude</a><sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup> sind Elemente dieser Hierarchie gegeben. Suchen Sie diese Elemente per Texteditor in der IFC-Datei und stellen Sie die Elemente mit den Funktionsklassen <strong>IfcProject</strong>, <strong>IfcSite</strong>, <strong>IfcBuilding</strong>, <strong>IfcStorey</strong>, <strong>IfcRoof</strong> und <strong>IfcSlab</strong> mit <strong>#ID</strong> und <strong>IFC-Funktionsklasse</strong> und deren Beziehungen untereinander in einem Diagramm dar. Die Verbindungen sind über Elemente mit dem Schlüsselwort <strong>IfcRelAggregates</strong> definiert. Entscheiden Sie, ob die Datei widerspruchsfrei zur Baumhierarchie ist. Nutzen Sie die <a href="/doc/vorlage_a3.odg">Diagrammvorlage</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">...</p>
+<p><code>Hier das eigene Diagramm einfügen</code></p>
+<p><img align="center" alt="Haus der Informatik" src="/figures/vorlage_a3.png" /></p>
+<dl>
+<dt><code>Hierarchie widerspruchsfrei</code></dt>
+<dd>ja/nein ... weil ...</dd>
+</dl>
+</div>
+<p>Für die Analyse der Hierarchie ist das Auswerten mit einem Texteditor sehr mühsam. Sinnvoller ist die Nutzung einer Softwareschnittstelle, die die Funktionalitäten und Strukturen der IFC-Dateien bereits liefert. Für die Programmiersprachen <strong>Python</strong> und <strong>C++</strong> gibt es eine freie Softwareschnittstelle mit dem Namen <strong>ifcopenshell</strong><sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>. Diese können Sie nutzen, um die Hierarchie ermitteln zu lassen. </p>
+<div class="admonition info inline end">
+<p class="admonition-title">10 min</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe 4 - Softwareschnittstelle ifcopenshell</p>
+<p>Erstellen Sie auf dem Desktop ein Verzeichnis <strong>ifc</strong>. Laden Sie den <a href="/src/IFCTreeWidget.py">Python-Quelltext</a> in dieses herunter und kopieren Sie ebenfalls die IFC-Datei unseres <a href="/doc/ug.ifc">Gebäudes</a> in das Verzeichnis.  Öffnen Sie eine Kommandozeile und wechseln Sie in das Verzeichnis <strong>ifc</strong>. Starten Sie das Skript mit dem gegebenen Befehl. Erklären Sie die Bedeutung der Spalte <strong>GlobalID</strong>.</p>
+</div>
+<div class="admonition code">
+<p class="admonition-title">Python-Pakete nachinstallieren</p>
+<div class="highlight"><pre><span></span><code>pip --proxy kjs-03.lan.dd-schulen.de:3128 install PyQt5
+pip --proxy kjs-03.lan.dd-schulen.de:3128 install IfcOpenshell
+</code></pre></div>
+</div>
+<div class="admonition code">
+<p class="admonition-title">Baumansicht IFC</p>
+<div class="highlight"><pre><span></span><code>python IFCTreeWidget.py ug.ifc
+</code></pre></div>
+</div>
+<p>Es wird ein Explorer-Fenster geöffnet und die Baumstruktur ist softwaretechnisch durch den <strong>Tree-View</strong> dargestellt.   </p>
+<p><img alt="Baumansicht der IFC-Datei" src="/figures/ifc_tree.png" /></p>
+<div class="admonition info inline end">
+<p class="admonition-title">10 min</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe 5 - Hierarchie reparieren</p>
+<p>Offensichtlich ist die IFC-Datei bezüglich der Hierarchie fehlerbehaftet. Das Dach <strong>IfcRoof</strong> mit den beiden Dachhälften <strong>IfcSlab</strong> ist nicht auffindbar. Verbinden Sie das Dach mit dem Gebäude, in dem Sie ein neues Element <strong>IfcRelAggregates</strong> mit dem Texteditor in die <a href="/doc/ug.ifc">Gebäude-Datei</a> einfügen. Speichern Sie die neue Datei als <strong>ug_mit_dach.ifc</strong>. Prüfen Sie anschließend die Hierarchie mit dem Python-Quelltext <a href="/src/IFCTreeWidget.py">IFCTreeWidget.py</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Das Ergebnis sollte nun so aussehen ...</p>
+<p><img align="center" alt="" src="/figures/ifc_tree_with_roof.png" /></p>
+</div>
+<p>Das Erstellen von dreidimensionalen elektronischen Gebäudedaten wird mit spezieller CAD-Software erleichtert. Wir wollen die freie Software <strong>Blender</strong> nutzen und die IFC-Datei importieren.</p>
+<div class="admonition info inline end">
+<p class="admonition-title">10 min</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe 6 - IFC-Import in CAD-Software</p>
+<p>Öffnen Sie die Software <strong>Blender</strong> über die <strong>PortableApps-Menüstruktur</strong>. Importieren Sie die Datei <strong>ug_mit_dach.ifc</strong>.
+<img alt="" src="/figures/blender_ifc_import.png" /></p>
+</div>
+<p>Für die Softwareentwicklung sollen IT-Komponenten der <strong>ITSystemhaus GmbH</strong> in die Gebäudedaten eingepflegt werden, um die Angebotserstellung und eine spätere Installation zu unterstützen. Dazu erstellen Sie zuerst ein einfaches IFC-Objekt, welches danach als Server in die Gebäudedaten importiert wird.  </p>
+<div class="admonition info inline end">
+<p class="admonition-title">10 min</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe 7 - Nutzen der Schnittstelle ifcopenshell</p>
+<p>Laden Sie den <a href="/src/server_create.py">Python-Quelltext</a> dazu in den Ordner <strong>ifc</strong>. Starten Sie das Skript mit gegebenem Befehl. Es wird eine IFC-Datei <strong>server.ifc</strong> erzeugt, die unseren Server als quaderförmigen Kasten modelliert. Die Server-Komponente wird dabei in ein eigenes IFC-Projekt mit eigener Hierarchie eingebettet, die Sie mit dem <strong>TreeView</strong> anschauen können. Bestimmen Sie die Funktionsklasse und den Namen des Server-Objektes.</p>
+</div>
+<details class="code">
+<summary>Erzeugen eines Server-Objektes</summary>
+<p><div class="highlight"><pre><span></span><code>python server_create.py
+</code></pre></div>
+... mit dem Inhalt von <strong>server_create.py</strong>
+<div class="highlight"><pre><span></span><code>import ifcopenshell
+from ifcopenshell.api import run
+import numpy
+
+# Create a blank model
+model = ifcopenshell.file()
+
+# All projects must have one IFC Project element
+project = run(&quot;root.create_entity&quot;, model, ifc_class=&quot;IfcProject&quot;, name=&quot;My Project&quot;)
+
+# Geometry is optional in IFC, but because we want to use geometry in this example, let&#39;s define units
+# Assigning without arguments defaults to metric units
+run(&quot;unit.assign_unit&quot;, model)
+
+# Let&#39;s create a modeling geometry context, so we can store 3D geometry (note: IFC supports 2D too!)
+context = run(&quot;context.add_context&quot;, model, context_type=&quot;Model&quot;)
+
+# In particular, in this example we want to store the 3D &quot;body&quot; geometry of objects, i.e. the body shape
+body = run(&quot;context.add_context&quot;, model, context_type=&quot;Model&quot;,
+    context_identifier=&quot;Body&quot;, target_view=&quot;MODEL_VIEW&quot;, parent=context)
+
+# Create a site, building, and storey. Many hierarchies are possible.
+site = run(&quot;root.create_entity&quot;, model, ifc_class=&quot;IfcSite&quot;, name=&quot;My Site&quot;)
+building = run(&quot;root.create_entity&quot;, model, ifc_class=&quot;IfcBuilding&quot;, name=&quot;Building A&quot;)
+storey = run(&quot;root.create_entity&quot;, model, ifc_class=&quot;IfcBuildingStorey&quot;, name=&quot;Ground Floor&quot;)
+
+# Since the site is our top level location, assign it to the project
+# Then place our building on the site, and our storey in the building
+run(&quot;aggregate.assign_object&quot;, model, relating_object=project, product=site)
+run(&quot;aggregate.assign_object&quot;, model, relating_object=site, product=building)
+run(&quot;aggregate.assign_object&quot;, model, relating_object=building, product=storey)
+
+# Let&#39;s create a new server
+comm = run(&quot;root.create_entity&quot;, model, ifc_class=&quot;IfcBuildingElementProxy&quot;,name=&quot;ITDD-Server000&quot;)
+
+# Add a new body geometry, 60 centimeters x 50 centimeters x 40 centimeters
+geom = run(&quot;geometry.add_wall_representation&quot;, model, context=body, length=0.60, height=0.5, thickness=0.4)
+
+# Assign our new body geometry back
+run(&quot;geometry.assign_representation&quot;, model, product=comm, representation=geom)
+
+# Place our server in the ground floor
+run(&quot;spatial.assign_container&quot;, model, relating_structure=storey, product=comm)
+
+# Write out to a file
+model.write(&quot;server.ifc&quot;)
+</code></pre></div>
+Eventuell ist das Paket numpy noch nicht installiert. Dieses kann mit dem folgenden Kommandozeilenbefehl nachinstalliert werden.
+<div class="highlight"><pre><span></span><code>pip --proxy http://kjs-03.lan.dd-schulen.de:3128  install numpy
+</code></pre></div></p>
+</details>
+<p>Die Hierarchie von <strong>server.ifc</strong> kann wiederum mit dem <strong>TreeView</strong> analysiert werden und es zeigt sich, dass auch hier die Klassen <strong>IfcProject</strong>,<strong>IfcSite</strong>,<strong>IfcBuilding</strong> und <strong>IfcStorey</strong> vorhanden sind. Die zughörigen Funktionsaufrufe der Softwareschnittstelle im <a href="/src/server_create.py">Python-Quelltext</a> sind leicht zu finden. Das Modell lässt sich auch in <strong>blender</strong> importieren. Leider wird der Server hier als neues Projekt importiert und ein Einhängen des Elements in unser Gebäude per <em>Copy and Paste</em> scheitert an einer fehlerhaften IFC-Exportfunktion von <strong>blender</strong>. Deshalb wandeln Sie das Python-Skript etwas ab und hängen den Server per Softwareschnittstelle ein.</p>
+<div class="admonition info inline end">
+<p class="admonition-title">15 min</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe 8 - Server in Gebäude einhängen</p>
+<p>Nutzen Sie das Skript <a href="/src/server_create.py">server_create.py</a> als Vorlage und erstellen Sie daraus ein neues Skript <strong>server_create_in_ug.py</strong>. Führen Sie darin folgende Aktionen aus:</p>
+<ul>
+<li>Öffnen Sie die Datei <strong>ug_mit_dach.ifc</strong>.</li>
+<li>Weisen Sie der Variablen <strong>context</strong> das Element mit der Klasse <strong>IfcGeometricRepresentationContext</strong> aus der Gebäudedatei zu.</li>
+<li>Weisen Sie der Variablen <strong>body</strong> das Element mit der Klasse <strong>IfcGeometricRepresentationContext('Body','Model',...</strong> aus der Gebäudedatei zu.</li>
+<li>Weisen Sie der Variablen <strong>storey</strong> das Element mit der Klasse <strong>IfcBuildingStorey(...,Floor 0, ...)</strong> aus der Gebäudedatei zu.</li>
+<li>Speichern Sie das neue Modell in der Datei <strong>ug_mit_dach_und_server.ifc</strong>.</li>
+</ul>
+</div>
+<p>Wenn Sie nun das Modell in <strong>blender</strong> importieren, gibt es nur ein Projekt und der Server ist der Etage 0 zugeordnet. Nun können Sie den Server im CAD-Modell auf den Schreibtisch im Einzelbüro stellen.</p>
+<div class="admonition info inline end">
+<p class="admonition-title">15 min</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe 9 - Verschieben des Servers im CAD-Modell</p>
+<p>Nutzen Sie die Verschiebe- und Rotationsfunktion, die eine Verschiebung in die Richtungen X, Y und Z zulässt. Verändern Sie die Werte, bis der Server an der korrekten Stelle auf dem Schreibtisch steht. Exportieren Sie das Modell in <strong>blender</strong> als <strong>ug_mit_dach_und_server_auf_schreibtisch</strong>. </p>
+<p><img alt="" src="/figures/blender_verschiebung.png" /></p>
+<p><img alt="" src="/figures/blender_zielschreibtisch.png" /></p>
+</div>
+<div class="admonition info inline end">
+<p class="admonition-title">20 min</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Aufgabe 10 - weitere Server</p>
+<p>Fügen Sie zwei weitere Server mit den Namen <strong>ITDD-Server001</strong> und <strong>ITDD-Server002</strong> in das CAD-Modell ein und verteilen Sie diese auf die beiden anderen Schreibtische. Speichern Sie die Datei als <strong>ug_mit_dach_und_drei_servern_auf_schreibtisch</strong>.     </p>
+</div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>buildingSMART International Ltd.; <a href="https://technical.buildingsmart.org/standards/ifc/ifc-schema-specifications/">IFC-Specifications</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Beuth Verlag; DIN EN ISO 16739-1 - 2021-11&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Andre Wisen; <a href="https://bimwhale.gitbook.io">BIM Whale Project</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>buildingSMART International Ltd.; <a href="https://standards.buildingsmart.org/IFC/RELEASE/IFC2x3/TC1/HTML/ifcproductextension/lexical/ifcrelcontainedinspatialstructure.htm">SpatialStructure</a>&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://ifcopenshell.org/">IfcOpenShell-Community</a>; <a href="https://github.com/IfcOpenShell">github Source</a>&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>
